@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/navi.css') }}">
+
+<body>
+<table class="navi_style_small">
+    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
+    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
+    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
+    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
+    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
+    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+</table>
+<h1 align="center"><a href="https://cloud.tenable.com/tio/app.html#/settings/tags/values?tags_values.st=value.0" style="navi_sytle_small" target="_blank">{{ title }}</a></h1>
+<pre>{{data}}</pre>
+
+</body>
+</html>

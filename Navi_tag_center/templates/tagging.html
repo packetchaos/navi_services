@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/navi.css') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tagging Center</title>
+    <script>
+        function message(){
+        document.getElementById('Success').style.visibility='visible'
+        }
+
+        function my_function(value){
+           if (value=='xref')
+               {
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='visible'
+               document.getElementsByName('plugin_id_output')[0].placeholder='(Optional)Xref ID'
+               document.getElementById('optional').style.visibility='visible'
+               }
+           else if (value=='plugin_name')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter Search Text'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+
+               }
+           else if (value=='plugin_id')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter Plugin ID'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+               }
+           else if (value=='plugin_output')
+               {
+                document.getElementsByName('search_text')[0].placeholder='Enter Search Text'
+                document.forms["tag_line"]['plugin_id_output'].style.visibility='visible'
+                document.getElementById('optional').style.visibility='visible'
+                document.getElementsByName('plugin_id_output')[0].placeholder='(Required)Plugin ID'
+                }
+           else if (value=='ports')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter Port Number'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+               }
+           else if (value=='cve')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter CVE ID'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+               }
+           else if (value=='scanid')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter Scan ID not UUID'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+               }
+           else if (value=='scantime')
+               {
+               document.getElementsByName('search_text')[0].placeholder='Enter # of Minutes'
+               document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'
+               document.getElementById('optional').style.visibility='hidden'
+               }
+           else
+                {
+                document.getElementById('optional').style.visibility='hidden'
+                document.forms["tag_line"]['plugin_id_output'].style.visibility='hidden'};
+                }
+    </script>
+</head>
+<body>
+<table class="navi_style_small">
+    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
+    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
+    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
+    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
+    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
+    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+</table>
+<br>
+<h1 align="center"> Dyanmic Tag Rules</h1>
+<form action="/tags" method="POST" name="tag_line">
+    <table align="center">
+        <tr>
+            <td width="45%">
+                <label for="Category" >Tag Category</label>
+                <input type="text" class="navi_style_main" id="Category" size="50" name="Category" placeholder="Name your Category">
+
+            </td>
+            <td width="45%">
+                <label for="Value">Tag Value</label>
+                <input type="text" id="Value" class="navi_style_main" name="Value" size="50" placeholder="Enter your Value">
+            </td>
+            </tr>
+        <tr><td colspan="3"></td></tr>
+        <tr>
+            <td width="100%" colspan="3">
+                <label for="tag_method" >Choose a Tag Method:</label>
+
+                <select name="tag_method" id="tag_method" class="navi_style_main" onchange="my_function(this.value)">
+                    <option value="plugin_name">Plugin Name</option>
+                    <option value="plugin_id">Plugin id</option>
+                    <option value="plugin_output">Plugin Output</option>
+                    <option value="ports">Open Port</option>
+                    <option value="cve">CVE ID</option>
+                    <option value="xref">Cross Reference</option>
+                    <option value="scanid">Scan ID</option>
+                    <option value="scantime">Scan Time(Mins)</option>
+                    <option value="group">Agent Group</option>
+                </select>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="3">
+                <label for="search_text" >Search Object</label>
+                <input type="text" id="search_text" class="navi_style_main" size="50" name="search_text" placeholder="Enter Plugin or Text">
+
+                <label for="plugin_id_output" id="optional" style="visibility:hidden;">Optional Refinement</label>
+                <input type="text" size="50" id="plugin_id_output" class="navi_style_main" name="plugin_id_output" style="visibility:hidden;" placeholder="Enter a Plugin">
+
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2"><input type="submit" value="Add Rule"></td></td>
+
+        </tr>
+    </table>
+</form>
+    <table>
+        <td width="10%" align="left"><form action="/runrules" method="GET"><input type="submit" id="rules" value="Execute Rules" onclick="message()">
+        <label for="rules" id="Success" style="visibility:hidden;">Running Rules Now! Please wait... You will be redirected</label></form></td>
+    </table>
+<br>
+<table class="navi_style_main">
+    <tr>
+        <th>Tag Category</th>
+        <th>Tag Value</th>
+        <th>Method</th>
+        <th>Search Object</th>
+        <th>Delete</th>
+        <th>Last Run</th>
+    </tr>
+    {% for tag in tags %}
+    <tr>
+        <td width="30%">{{ tag[1] }}</td>
+        <td width="30%">{{ tag[2] }}</td>
+        <td width="15%">{{ tag[3] }} {{tag[5]}} </td>
+        <td width="15%">{{ tag[4] }} </td>
+        <td width="5%"><form action="/delete" method="GET"> <input type="hidden" id="{{tag[0]}}" name="remove" value="{{tag[0]}}"><input type="submit" value="delete"></form></td>
+        <td width="5%"><a href="{{tag[7]}}" target="_blank">{{ tag[6] }}<a/></td>
+    </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consolidated PoV Report</title>
+    <style>
+body {
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+text-align: left;
+background-color: #f7f7f7;
+}
+h1 {
+font-size: 1.6em;
+}
+h2 {
+font-size: 1.4em;
+}
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+#  white-space: -moz-pre-wrap;
+#  white-space: -pre-wrap;
+#  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+td {
+font-size: 0.9em;
+}
+.table1 tr:nth-child(even) {
+background-color: #f7f7f7;
+}
+.table1 tr:nth-child(odd) {
+background-color: white;
+}
+.breakdown td{
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+}
+.td_orange{
+font-size: 0.9em;
+background-color: #FF9757;
+}
+.td_green{
+font-size: 0.9em;
+background-color: #78AF43;
+}
+.td_red{
+font-size: 0.9em;
+background-color: #F6303E;
+}
+.page_heading {
+padding-left: 15px;
+}
+.bar_chart_fl b {
+font-size: 1.2em;
+}
+.bar_chart_fl {
+font-size: 0.8em;
+float: left;
+background-color: white;
+padding: 10px;
+margin: 10px;
+text-align: left;
+border: 2px solid white;
+border-radius: 3px;
+#box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.bar_chart_fl_2 {
+font-size: 0.8em;
+background-color: white;
+padding: 10px;
+margin: 10px;
+text-align: left;
+border: 2px solid white;
+border-radius: 3px;
+}
+.hideme {
+display: none;
+}
+.critical {
+background-color: #91243E;
+color: white;
+text-align: center;
+border: 2px solid #708090;
+border-radius: 3px;
+padding: 2px;
+}
+.high {
+background-color: #DD4B50;
+color: white;
+text-align: center;
+border: 2px solid #708090;
+border-radius: 3px;
+padding: 2px;
+}
+.medium {
+background-color: #F18C43;
+color: white;
+text-align: center;
+border: 2px solid #708090;
+border-radius: 3px;
+padding: 2px;
+}
+.low {
+background-color: #F8C851;
+color: white;
+text-align: center;
+border: 2px solid #708090;
+border-radius: 3px;
+padding: 2px;
+}
+.info {
+background-color: #67ACE1;
+color: white;
+text-align: center;
+border: 2px solid #708090;
+border-radius: 3px;
+padding: 2px;
+}
+pre {
+overflow-x: auto;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+.floatleft {
+float: left;
+}
+.floatright {
+float: right;
+}
+.border1 {
+border: 2px solid #4b4b4b;
+border-radius: 5px;
+background-color: white;
+padding: 10px;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+.plugout {
+border: 2px solid black;
+border-radius: 5px;
+width: 70%;
+background-color: #0d3d5c;
+color: white;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 10px;
+padding-right: 10px;
+}
+.article_no_page {
+padding-left: 30px;
+padding-right: 30px;
+margin-bottom: 20px;
+background-color: #ececec;
+border: 2px solid #4b4b4b;
+color: black;
+border-radius: 3px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+}
+</style>
+</head>
+<body>
+
+
+<div class=page_heading>
+    <table width=100%>
+        <h1>WAS Scan Summary</h1>
+    </table>
+</div>
+
+<!--Vuln Totals -->
+<div class=bar_chart_fl>
+    <table width=100%%>
+        <tr>
+            <td align=center><h2>Vulnerability Totals</h2></td>
+    </table>
+    <table class=table1 width=100%>
+        <tr>
+            <td width=80%>Critical Vulnerabilities</td>
+            <td class=critical width=20% align=center>{{critical_total}}</td>
+        </tr>
+
+        <tr>
+        <td width=80%x>High Vulnerabilities</td>
+        <td class=high width=20% align=center>{{high_total}}</td>
+        </tr>
+
+        <tr>
+        <td width=80%>Medium Vulnerabilities</td>
+        <td class=medium width=20% align=center>{{medium_total}}</td>
+        </tr>
+
+        <tr>
+        <td width=80%>Low Vulnerabilities</td>
+        <td class=low width=20% align=center>{{low_total}}</td>
+        </tr>
+
+        <tr>
+        <td width=80%>Informational Items</td>
+        <td class=info width=20% align=center>{{info_total}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<!--OWASP Totals -->
+<div class=bar_chart_fl>
+    <table width=100%>
+        <tr>
+            <td><h2 align="center">OWASP 2021 Totals</h2></td></tr>
+    </table>
+    <table class=table1 width=100%>
+        <tr>
+            {%for k, v in value_dict.items()%}
+            <th width=10%>{{k}}</th>
+             {% endfor %}
+        </tr>
+        <tr>
+            {%for k, v in value_dict.items()%}
+            <td align=center>{{v}}</td>
+             {% endfor %}
+        </tr>
+    </table>
+
+</div>
+
+<!-- Technologies Found -->
+<div class=bar_chart_fl>
+    <table width=100%>
+        <tr>
+            <td><h2>Technologies Found</h2></td>
+    </table>
+
+    <table class=table1 width=700px>
+        <tr>
+            <td>
+                {%for item in technology_list%}
+                &#x2022;{{item}}&nbsp;&nbsp;{% endfor %}</td>
+        </tr>
+
+    </table>
+</div>
+
+<table width=100%></table>
+
+<!--Application Summary -->
+<div class=page_heading>
+<h1>Application Summary</h1>
+    <table width=100%></table>
+</div>
+
+<div class=page_heading></div>
+ {% for k, v in app_data.items() %}
+<div class=bar_chart_fl>
+    <table class=table1 width=700px>
+         <tr>
+             <th width=50%>Web App Scan Completed - <a href="/report?scan_uuid={{v[12]}}">{{v[11]}}</a></th>
+            <th width=10% align=center >Critical</th>
+            <th width=10% align=center>High</th>
+             <th width=10% align=center>Medium</th>
+             <th width=10% align=center>Low</th>
+             <th width=10% align=center>Info</th>
+        </tr>
+
+        <tr>
+            <td width=50%><a href="/?config_id={{v[13]}}">{{v[8]}}</a></td>
+            <td width=10% class=critical align=center>{{v[0]}}</td>
+            <td width=10% class=high align=center>{{v[1]}}</td>
+            <td width=10% class=medium align=center>{{v[2]}}</td>
+            <td width=10% class=low  align=center>{{v[3]}}</td>
+            <td width=10% class=info align=center>{{v[4]}}</td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <table class=table1 width=100%>
+                    <tr><th>Technologies Found</th></tr>
+                    {%for item in v[10]%}
+                    <tr>
+                        <td>{{item}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            <td colspan="5">
+                <table width="350px">
+                    <tr>
+                        {%for key, value in v[9].items()%}
+                        <th>{{key}}</th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {%for key, value in v[9].items()%}
+                        <td>{{value}}</td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+</div>
+{% endfor %}
+
+</body>
+</html>
+
