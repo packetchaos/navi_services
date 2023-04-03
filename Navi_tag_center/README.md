@@ -20,3 +20,8 @@ Please feel free to download and provide feedback
 ## UI Snap Shot
 ![UI Snapshot](../UI%20Snapshot.png)
 
+# Deploy using local version of Navi
+    docker run -d -p 5000:5000 --mount type=bind,source="$(pwd)",target=/usr/src/app/data packetchaos/tag-center
+
+# Deploy using built-in navi DB
+    docker run -d -p 5000:5000 packetchaos/tag-center
