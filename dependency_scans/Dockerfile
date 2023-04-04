@@ -20,4 +20,8 @@ COPY dependent_scan.py /usr/src/app/
 
 WORKDIR /usr/src/app
 
-CMD python3 dependent_scan.py $access_key $secret_key $trigger $target
+RUN chmod +x dependent_scan.py
+
+ENTRYPOINT ["python3", "./dependent_scan.py"]
+
+CMD ["$access_key", "$secret_key", "$trigger", "$target"]

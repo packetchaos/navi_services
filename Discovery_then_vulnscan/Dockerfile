@@ -24,4 +24,8 @@ COPY discovery_then_vulnscan.py /usr/src/app/
 
 WORKDIR /usr/src/app
 
-CMD python3 discovery_then_vulnscan.py $access_key $secret_key $trigger $fire $scanner $targets
+RUN chmod +x discovery_then_vulnscan.py
+
+ENTRYPOINT ["python3", "./discovery_then_vulnscan.py"]
+
+CMD ["$access_key", "$secret_key", "$trigger", "$fire", "$scanner", "$targets"]

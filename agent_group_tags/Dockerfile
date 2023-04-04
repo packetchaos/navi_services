@@ -16,4 +16,8 @@ COPY agent_group_tags.py /usr/src/app/
 
 WORKDIR /usr/src/app
 
-CMD python3 agent_group_tags.py $access_key $secret_key
+RUN chmod +x agent_group_tags.py
+
+ENTRYPOINT ["python3", "./agent_group_tags.py"]
+
+CMD ["$access_key", "$secret_key"]

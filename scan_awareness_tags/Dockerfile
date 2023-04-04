@@ -16,4 +16,8 @@ COPY scan_illumination.py /usr/src/app/
 
 WORKDIR /usr/src/app
 
-CMD python3 scan_illumination.py $access_key $secret_key
+RUN chmod +x scan_illumination.py
+
+ENTRYPOINT ["python3", "./scan_illumination.py"]
+
+CMD ["$access_key", "$secret_key"]

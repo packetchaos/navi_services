@@ -22,7 +22,7 @@ When the scan is finished, the assets that responded in the discovery scan will 
 The script finishes and the container is destroyed once the vuln scan is launched.
 
 # Docker command
-    docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} -e trigger={discovery scan ID} -e fire={vulnerability scan} -e targets={target subnet(s)} packetchaos/discovery_then_vulnscan
+    docker run -d {your Access Key} {your secret Key} {discovery scan ID} {vulnerability scan} {target subnet(s)} packetchaos/discovery_then_vulnscan
 
 # navi command
     navi deploy discoverythenvulnscan --trigger {scan id} --fire {scan id} --targets subnet

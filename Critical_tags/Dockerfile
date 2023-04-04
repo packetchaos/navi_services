@@ -16,4 +16,8 @@ COPY critical_tags.py /usr/src/app/
 
 WORKDIR /usr/src/app
 
-CMD python3 critical_tags.py $access_key $secret_key
+RUN chmod +x critical_tags.py
+
+ENTRYPOINT ["python3", "./critical_tags.py"]
+
+CMD ["$access_key", "$secret_key"]

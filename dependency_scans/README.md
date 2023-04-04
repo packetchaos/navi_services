@@ -22,4 +22,4 @@ A vulnerability scan before a compliance scan is a common example.
 The scrtipt launches the 'trigger' scan, follows it's progress then launches the 'fire' scan using pytenable primarily the code above..
 
 # Docker command
- docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} packetchaos/dependencyscan
+ docker run -d {your Access Key} {your secret Key} packetchaos/dependencyscan
