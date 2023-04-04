@@ -16,8 +16,6 @@ ENV trigger=$trigger
 
 ENV fire=$fire
 
-ENV scanner=$scanner
-
 ENV targets=$targets
 
 COPY discovery_then_vulnscan.py /usr/src/app/
@@ -28,4 +26,4 @@ RUN chmod +x discovery_then_vulnscan.py
 
 ENTRYPOINT ["python3", "./discovery_then_vulnscan.py"]
 
-CMD ["$access_key", "$secret_key", "$trigger", "$fire", "$scanner", "$targets"]
+CMD ["$access_key", "$secret_key", "$trigger", "$fire", "$targets"]

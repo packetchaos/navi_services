@@ -43,8 +43,13 @@ while check_status:
         # launch the scan with new targets
         tio.scans.launch(fire, targets=text_targets)
         check_status = False
-    else:
-        print("Triggered Scan was aborted, imported or some other scan related issue.  Check the scan")
+
+    if scan_status == 'aborted':
+        print("Triggered Scan was aborted Check the scan")
+        break
+
+    if scan_status == 'imported':
+        print("Triggered Scan was imported and can't be used for this purpose.")
         break
 
 finish = time.time()
