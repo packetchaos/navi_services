@@ -29,9 +29,8 @@ list_of_ports = open_ports.decode('utf-8')
 
 # Tag by port
 for port in eval(list_of_ports):
-    print(port[0])
     if port[0] != '0':
-        cmd('navi tag --c "Open Port" --v "Port: {} --port {}'.format(port[0], port[0]))
+        cmd('navi tag --c "Open Port" --v "Port: {}" --port {}'.format(port[0], port[0]))
 
 finish = time.time()
 
