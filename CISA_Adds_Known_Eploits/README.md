@@ -1,0 +1,40 @@
+# CISA Known Exploits Recently Released - A docker Service
+
+This project is a Proof of Concept to show how you can use the Tenable API and a SQLite DB to solve some powerful use cases.  
+Wrapping a simple python script into a docker container makes it easy to deploy and reduces deployment risks.  
+It also means you don't need to be a developer or a scripter to take advantage of its power.
+
+# Why?
+
+
+# How it works
+
+We are weaponizing navi for good! This python script utilizes navi to tag assets based on "Plugin IDs" and text found in the output of a plugin.  
+Navi utilizes a SQLite database to store vulnerability and asset data coming from the export APIs in Tenable.io.
+
+
+# What does it do?
+
+The script uses the built in tag functionality to tag each asset by CVEs.
+
+Navi uses a SQLite database and the Tenable.io tag assignments endpoint to accomplish everything below.  To make these dynamic, put the container command or the script on a cronjob or scheduled task.
+
+CISA has added five new vulnerabilities to its Known Exploited Vulnerabilities Catalog, based on evidence of active exploitation.
+
+The script/service tags assets with the below characteristics:
+
+* CVE-2021-27876 Veritas Backup Exec Agent File Access Vulnerability
+* CVE-2021-27877 Veritas Backup Exec Agent Improper Authentication Vulnerability
+* CVE-2021-27878 Veritas Backup Exec Agent Command Execution Vulnerability
+* CVE-2019-1388 Microsoft Windows Certificate Dialog Privilege Escalation Vulnerability
+* CVE-2023-26083 Arm Mali GPU Kernel Driver Information Disclosure Vulnerability
+
+### Tag structure
+
+Assets will be tagged with the category "CISA Known Exploits" and the Value "Released April 7th {CVE ID}"
+
+# Docker command
+    docker run -d {your Access Key} {your secret Key} packetchaos/scantags
+
+# navi command
+    navi deploy scantags

@@ -9,10 +9,10 @@ secret_key = str(sys.argv[2])
 url = "https://cloud.tenable.com"
 
 # Replace 'access_key and secret_key with your keys
-cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
+#cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
 
 # Update the navi database for tagging on vulns
-cmd('navi update full')
+#cmd('navi update full')
 
 
 # Do the authentication bits :)
