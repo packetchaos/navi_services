@@ -15,7 +15,7 @@ The script parses the CSV created from the above github project and tags each as
 The primary impact enables the secondary impact which leads to the exploit technique.
 
 
-[![image](../image.png)
+![image](../image.png)
 
 # What does it do?
 
@@ -32,5 +32,5 @@ The script/service tags assets in the below format:
 * Mitre : Exploit Technique: { Technique ID(s) }
 
 # Docker command
-    docker run -d {your Access Key} {your secret Key} packetchaos/mitre_tags
+    docker run -d packetchaos/mitre_tags {your Access Key} {your secret Key}
 
