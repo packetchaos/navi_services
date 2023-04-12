@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x port_tagging.py
 
-ENTRYPOINT ["python3", "./port_tagging.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./port_tagging.py", "$access_key", "$secret_key"]

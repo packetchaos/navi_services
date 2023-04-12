@@ -22,6 +22,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x dependent_scan.py
 
-ENTRYPOINT ["python3", "./dependent_scan.py"]
-
-CMD ["$access_key", "$secret_key", "$trigger", "$target"]
+CMD ["python3", "./dependent_scan.py", "$access_key", "$secret_key", "$trigger", "$target"]

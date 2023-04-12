@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x scan_illumination.py
 
-ENTRYPOINT ["python3", "./scan_illumination.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./scan_illumination.py", "$access_key", "$secret_key"]

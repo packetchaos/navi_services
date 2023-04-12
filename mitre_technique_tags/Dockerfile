@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x mitre_tagging.py
 
-ENTRYPOINT ["python3", "./mitre_tagging.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./mitre_tagging.py","$access_key", "$secret_key"]

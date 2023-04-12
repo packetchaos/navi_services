@@ -37,12 +37,16 @@ cmd('navi tag --c "Credential Issues" --v "Intermittent Auth Failure" --plugin 1
 raw_scan_id_data = requests.request('GET', url + '/scans', headers=grab_headers()).json()
 
 # Cycle through each scan and tag each one by Scan ID
-for scans in raw_scan_id_data['scans']:
-    if scans['status'] == 'completed':
-        if not scans['is_archived']:
-            scanid = scans['id']
-            print("Tagging assets scanned by Scan ID {}\n".format(scanid))
-            cmd('navi tag --c "Scan ID" --v "{}" --scanid {}'.format(scanid, scanid))
+try:
+    for scans in raw_scan_id_data['scans']:
+        if scans['status'] == 'completed':
+            if not scans['is_archived']:
+                scanid = scans['id']
+                print("Tagging assets scanned by Scan ID {}\n".format(scanid))
+                cmd('navi tag --c "Scan ID" --v "{}" --scanid {}'.format(scanid, scanid))
+except KeyError:
+    pass
+
 
 
 finish = time.time()

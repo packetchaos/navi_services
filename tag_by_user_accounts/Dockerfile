@@ -20,6 +20,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x tag_by_users.py
 
-ENTRYPOINT ["python3", "./tag_by_users.py"]
-
-CMD ["$access_key", "$secret_key", "$user"]
+CMD ["python3", "./tag_by_users.py", "$access_key", "$secret_key", "$user"]

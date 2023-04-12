@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x critical_tags.py
 
-ENTRYPOINT ["python3", "./critical_tags.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./critical_tags.py", "$access_key", "$secret_key"]
