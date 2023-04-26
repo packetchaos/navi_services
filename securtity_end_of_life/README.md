@@ -5,4 +5,4 @@ Wrapping a simple python script into a docker container makes it easy to deploy 
 It also means you don't need to be a developer or a scripter to take advantage of its power.
 
 # Docker command
-    docker run -d {your Access Key} {your secret Key} {target username} packetchaos/seol
+    docker run -d {your Access Key} {your secret Key} packetchaos/seol

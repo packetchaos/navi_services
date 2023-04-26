@@ -4,6 +4,8 @@ import time
 import requests
 from tenable.io import TenableIO
 import subprocess
+import pandas as pd
+import io
 
 start = time.time()
 
@@ -62,6 +64,12 @@ cmd('navi tag --c "Certificate Issues" --v "Not Trusted!" --plugin 51192')
 cmd('navi tag --c "Certificate Issues" --v "SSL Cert Expires Soon!" --plugin 42981')
 cmd('navi tag --c "Certificate Issues" --v "Weak Keys!" --plugin 60108')
 
+# Tag assets based on Unsupported software
+cmd('navi tag --c "End of Life" --v "Unsupported" --name "Unsupported"')
+
+# Tag assets based on Security End of Life
+cmd('navi tag --c "End of Life" --v "Security End of Life" --name "SEoL"')
+
 # Scan ID tags
 raw_scan_id_data = requests.request('GET', url + '/scans', headers=grab_headers()).json()
 
@@ -94,6 +102,36 @@ list_of_ports = open_ports.decode('utf-8')
 for port in eval(list_of_ports):
     if port[0] != '0':
         cmd('navi tag --c "Open Port" --v "Port: {}" --port {}'.format(port[0], port[0]))
+
+
+# tag by mitre impacts
+
+# Supporting Document: https://github.com/center-for-threat-informed-defense/attack_to_cve
+csv_url = 'https://raw.githubusercontent.com/center-for-threat-informed-defense/attack_to_cve/master/Att%26ckToCveMappings.csv'
+
+download = requests.get(csv_url).content
+
+data = pd.read_csv(io.StringIO(download.decode('utf-8')))
+
+
+for row in data.values:
+    cveid = row[0]
+    primary_impact = str(row[1])
+    secondary_impact = str(row[2])
+    exploit_technique = str(row[3])
+
+    if "nan" not in primary_impact:
+        print("Tagging assets based on CVE: {} and impact: {} ".format(cveid, primary_impact))
+        cmd('navi tag --c "Mitre" --v "Primary Impact: {}" --cve "{}"'.format(primary_impact, cveid))
+
+    if "nan" not in secondary_impact:
+        print("v assets based on CVE: {} and impact: {} ".format(cveid, secondary_impact))
+        cmd('navi tag --c "Mitre" --v "Secondary Impact: {}" --cve "{}"'.format(secondary_impact, cveid))
+
+    if "nan" not in exploit_technique:
+        print("v assets based on CVE: {} and impact: {} ".format(cveid, exploit_technique))
+        cmd('navi tag --c "Mitre" --v "Exploit Technique: {}" --cve "{}"'.format(exploit_technique, cveid))
+
 
 finish = time.time()
 
