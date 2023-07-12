@@ -42,12 +42,10 @@ try:
         if scans['status'] == 'completed':
             if not scans['is_archived']:
                 scanid = scans['id']
-                print("Tagging assets scanned by Scan ID {}\n".format(scanid))
+                print("Tagging assets scanned by Scan ID {}\n".format(scanid), flush=True)
                 cmd('navi tag --c "Scan ID" --v "{}" --scanid {}'.format(scanid, scanid))
 except KeyError:
     pass
-
-
 
 finish = time.time()
 
