@@ -49,7 +49,7 @@ Note: The Category : Value pair follow the Tag description.  This is what will b
 
 
 # Docker command
-    docker run -d {your Access Key} {your secret Key} packetchaos/critical_tags
+    docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} packetchaos/critical_tags
 
 # navi command
     navi deploy critical-tags
