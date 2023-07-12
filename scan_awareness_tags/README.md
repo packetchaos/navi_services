@@ -42,7 +42,7 @@ The script/service tags assets with the below characteristics:
 
 
 # Docker command
-    docker run -d {your Access Key} {your secret Key} packetchaos/scantags
+    docker run -d packetchaos/scantags {your Access Key} {your secret Key}
 
 # navi command
     navi deploy scantags
