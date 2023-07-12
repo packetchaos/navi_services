@@ -1,13 +1,13 @@
-import sys
 from tenable.io import TenableIO
 import time
+import os
 
 start = time.time()
 
-access_key = str(sys.argv[1])
-secret_key = str(sys.argv[2])
-trigger = str(sys.argv[3])
-fire = str(sys.argv[4])
+access_key = os.environ['access_key'] # str(sys.argv[1])
+secret_key = os.environ['secret_key'] # str(sys.argv[2])
+trigger = os.environ['trigger'] # str(sys.argv[3])
+fire = os.environ['target'] # str(sys.argv[4])
 
 url = "https://cloud.tenable.com"
 

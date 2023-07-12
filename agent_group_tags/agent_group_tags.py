@@ -1,11 +1,11 @@
+import os
 from os import system as cmd
-import sys
 import time
 from tenable.io import TenableIO
 start = time.time()
 
-access_key = str(sys.argv[1])
-secret_key = str(sys.argv[2])
+access_key = os.environ['access_key'] #str(sys.argv[1])
+secret_key = os.environ['secret_key']#str(sys.argv[2])
 
 url = "https://cloud.tenable.com"
 

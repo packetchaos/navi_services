@@ -1,5 +1,5 @@
 from os import system as cmd
-import sys
+import os
 import time
 import requests
 import pandas as pd
@@ -7,8 +7,8 @@ import io
 
 start = time.time()
 
-access_key = str(sys.argv[1])
-secret_key = str(sys.argv[2])
+access_key = os.environ['access_key'] # str(sys.argv[1])
+secret_key = os.environ['secret_key'] # str(sys.argv[2])
 
 url = "https://cloud.tenable.com"
 

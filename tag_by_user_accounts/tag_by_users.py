@@ -1,12 +1,12 @@
 from os import system as cmd
-import sys
+import os
 import time
-import requests
+
 start = time.time()
 
-access_key = str(sys.argv[1])
-secret_key = str(sys.argv[2])
-user = str(sys.argv[3])
+access_key = os.environ['access_key'] # str(sys.argv[1])
+secret_key = os.environ['secret_key'] # str(sys.argv[2])
+user = os.environ['user'] # str(sys.argv[3])
 
 url = "https://cloud.tenable.com"
 

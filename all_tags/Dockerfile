@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x deploy_all.py
 
-ENTRYPOINT ["python3", "./deploy_all.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./deploy_all.py", "$access_key", "$secret_key"]
