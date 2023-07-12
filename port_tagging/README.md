@@ -26,5 +26,5 @@ Each Open Port found in Tenable.io will be used to Tag all of the agents updated
 Open Port : Port : {Port number}
 
 # Docker command
-    docker run -d packetchaos/port_tagging {your Access Key} {your secret Key} 
+    docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} packetchaos/port_tagging
 

@@ -18,6 +18,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x agent_group_tags.py
 
-ENTRYPOINT ["python3", "./agent_group_tags.py"]
-
-CMD ["$access_key", "$secret_key"]
+CMD ["python3", "./agent_group_tags.py", "$access_key", "$secret_key"]

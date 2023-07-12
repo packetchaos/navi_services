@@ -29,4 +29,4 @@ The script tags each asset that a given user has a local or AD account on to bri
 
 
 # Docker command
-    docker run -d {your Access Key} {your secret Key} {target username} packetchaos/usertags
+    docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} -e user={target username} packetchaos/usertags

@@ -32,5 +32,5 @@ The script/service tags assets in the below format:
 * Mitre : Exploit Technique: { Technique ID(s) }
 
 # Docker command
-    docker run -d packetchaos/mitre_tags {your Access Key} {your secret Key}
+    docker run -d -e access_key={your Access Key} -e secret_key={your secret Key} packetchaos/mitre_tags
 
