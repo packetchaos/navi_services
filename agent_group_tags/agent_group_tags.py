@@ -9,7 +9,7 @@ secret_key = str(sys.argv[2])
 
 url = "https://cloud.tenable.com"
 
-tio = TenableIO(access_key, secret_key, vendor='Casey Reid', product='navi', build="Agent Group Tags - 0.0.1")
+tio = TenableIO(access_key, secret_key, vendor='Casey Reid', product='navi', build="Agent Group Tags - 0.0.2")
 
 # Replace 'access_key and secret_key with your keys
 cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
@@ -27,9 +27,9 @@ agent_raw_data = tio.agent_groups.list(scanner_id=0)
 
 # Cycle through each scan and tag each one by Scan ID
 for groups in agent_raw_data:
-    group_name = groups['name']
+    group_name = str(groups['name'])
 
-    print("Tagging assets in Agent Group: {}\n".format(group_name))
+    print("Tagging assets in Agent Group: {}\n".format(group_name), flush=True)
 
     # Use Navi to tag Assets by Agent group
     cmd('navi tag --c "Agent Group" --v "{}" --group "{}"'.format(group_name, group_name))
