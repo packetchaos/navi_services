@@ -14,7 +14,7 @@ ENV secret_key=$secret_key
 
 ENV trigger=$trigger
 
-ENV target=$target
+ENV fire=$fire
 
 COPY dependent_scan.py /usr/src/app/
 
@@ -22,4 +22,4 @@ WORKDIR /usr/src/app
 
 RUN chmod +x dependent_scan.py
 
-CMD ["python3", "./dependent_scan.py", "$access_key", "$secret_key", "$trigger", "$target"]
+CMD ["python3", "./dependent_scan.py", "$access_key", "$secret_key", "$trigger", "$fire"]
