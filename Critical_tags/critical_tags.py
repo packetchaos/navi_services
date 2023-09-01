@@ -3,22 +3,14 @@ import os
 import time
 start = time.time()
 
-access_key = os.environ['access_key'] # str(sys.argv[1])
-secret_key = os.environ['secret_key'] # str(sys.argv[2])
-
-url = "https://cloud.tenable.com"
+access_key = os.environ['access_key']
+secret_key = os.environ['secret_key']
 
 # Replace 'access_key and secret_key with your keys
 cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
 
 # Update the navi database for tagging on vulns
 cmd('navi update full')
-
-
-# Do the authentication bits :)
-def grab_headers():
-    return {'Content-type': 'application/json', 'user-agent': 'navi-SS-Critical_tags', 'X-ApiKeys': 'accessKey=' + access_key + ';secretKey=' + secret_key}
-
 
 # Tag assets based on 19506 Data
 cmd('navi tag --c "Scan Time" --v "Over 60 Mins" --scantime 60')
