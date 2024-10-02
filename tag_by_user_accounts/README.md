@@ -18,7 +18,7 @@ Navi utilizes a SQLite database to store vulnerability and asset data coming fro
 
 The query used is below:
 
-    navi tag query "select asset_uuid from vulns where plugin_name LIKE '%user%' and output LIKE '%{a given username}%';"
+    navi tag query "select asset_uuid from vulns where plugin_name LIKE '%Users%' and output LIKE '%{a given username}%';"
 
 The tag by query function requires the asset_uuid from the vulns table or the uuid from the asset table.  
 This is due to the tag assignments endpoint requiring asset UUIDs for tagging assets.
