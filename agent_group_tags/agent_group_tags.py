@@ -12,10 +12,10 @@ url = "https://cloud.tenable.com"
 tio = TenableIO(access_key, secret_key, vendor='Casey Reid', product='navi', build="Agent Group Tags - 0.0.2")
 
 # Replace 'access_key and secret_key with your keys
-cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
+cmd('navi config keys --a "{}" --s "{}"'.format(access_key, secret_key))
 
 # Update the navi database for tagging on vulns
-cmd('navi update full')
+cmd('navi config update full')
 
 
 def grab_headers():
@@ -32,7 +32,7 @@ for groups in agent_raw_data:
     print("Tagging assets in Agent Group: {}\n".format(group_name), flush=True)
 
     # Use Navi to tag Assets by Agent group
-    cmd('navi tag --c "Agent Group" --v "{}" --group "{}"'.format(group_name, group_name))
+    cmd('navi enrich tag --c "Agent Group" --v "{}" --group "{}"'.format(group_name, group_name))
 
 
 finish = time.time()

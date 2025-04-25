@@ -63,62 +63,75 @@
     </script>
 </head>
 <body>
-<table class="navi_style_small">
-    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
-    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
-    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
-    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
-    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
-    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
-</table>
-<br><br>
-<h1 align="center">{{ title }} </h1>
-<table>
-    <td width="80%">
-        <form action="/search" method="GET" name="search_line">
-
-        <label for="search_method">Choose a Search Method:</label>
-
-        <select name="search_method" id="search_method" onchange="my_function(this.value)">
-            <option value="plugin_name">Plugin Name</option>
-            <option value="plugin_id">Plugin id</option>
-            <option value="output">Plugin Output</option>
-            <option value="ports">Open Port</option>
-            <option value="cve">CVE ID</option>
-            <option value="xref">Cross Reference</option>
-            <option value="scantime">Scan Time(Mins)</option>
-        </select>
-
-        <label for="search_text" >Search Object</label>
-        <input type="text" id="search_text" name="search_text" placeholder="Enter Search Text">
-
-        <input type="text" id="secondary_search" style="visibility:hidden;" name="secondary_search" placeholder="Optional Refinement">
-
-
-        <input type="submit" value="Search">
-    </form></td>
+<table align=center width="80%">
+    <tr>
+        <td>
+            <table class="navi_style_small">
+                <td><a href="http:{{url_for('configure_navi')}}"><b>Configiure</b></a></td>
+                <td><a href="http:{{url_for('main')}}"><b>Tag Center</b></a></td>
+                <td><a href="http:{{url_for('get_scan_stats')}}"><b>Asset Stats</b></a></td>
+                <td><a href="http:{{url_for('get_sla')}}"><b>SLA Stats</b></a></td>
+                <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}"><b>Credential Failures</b></a></td>
+                <td><a href="http:{{url_for('navi_search')}}"><b>Plugin Search</b></a></td>
+            </table>
+        </td>
+    </tr>
 </table>
 
+<table align=center width="90%">
+    <tr>
+        <td>
+            <br><br>
+            <h1 align="center">{{ title }} </h1>
+            <table>
+                <td width="80%">
+                    <form action="/search" method="GET" name="search_line">
 
-<br>
-<table class="navi_style_main">
-<tr>
-    <th><u>Plugin ID</u></th>
-    <th><u>IP Address</u></th>
-    <th><u>UUID</u></th>
-    <th><u>Plugin Name</u></th>
-    <th><u>VPR Score</u></th>
-</tr>
-{% for asset in new_list %}
-<tr>
-    <td width="5%"><a href="{{ asset[5] }}" target="_blank">{{ asset[2] }}</a></td>
-    <td width="10%">{{ asset[0] }} </td>
-    <td width="25%"><a href="https://cloud.tenable.com/tio/app.html#/assets-uw/hosts-assets/details/{{ asset[1] }}/findings?uw_asset_details_findings_nessus.st=last_observed.1%7Eseverity.1" target="_blank">{{ asset[1] }}</a></td>
-    <td>{{ asset[3] }} </td>
-    <td width="5%">{{ asset[4] }} </td>
-</tr>
-{% endfor %}
+                    <label for="search_method">Choose a Search Method:</label>
 
+                    <select name="search_method" id="search_method" onchange="my_function(this.value)">
+                        <option value="plugin_name">Plugin Name</option>
+                        <option value="plugin_id">Plugin id</option>
+                        <option value="output">Plugin Output</option>
+                        <option value="ports">Open Port</option>
+                        <option value="cve">CVE ID</option>
+                        <option value="xref">Cross Reference</option>
+                        <option value="scantime">Scan Time(Mins)</option>
+                    </select>
+
+                    <label for="search_text" >Search Object</label>
+                    <input type="text" id="search_text" name="search_text" placeholder="Enter Search Text">
+
+                    <input type="text" id="secondary_search" style="visibility:hidden;" name="secondary_search" placeholder="Optional Refinement">
+
+
+                    <input type="submit" value="Search">
+                </form></td>
+            </table>
+
+
+            <br>
+            <table class="navi_style_main">
+            <tr>
+                <th><u>Plugin ID</u></th>
+                <th><u>IP Address</u></th>
+                <th><u>UUID</u></th>
+                <th><u>Plugin Name</u></th>
+                <th><u>VPR</u></th>
+            </tr>
+            {% for asset in new_list %}
+            <tr>
+                <td width="5%"><a href="{{ asset[5] }}" target="_blank">{{ asset[2] }}</a></td>
+                <td width="10%">{{ asset[0] }} </td>
+                <td width="25%"><a href="https://cloud.tenable.com/tio/app.html#/assets-uw/hosts-assets/details/{{ asset[1] }}/findings?uw_asset_details_findings_nessus.st=last_observed.1%7Eseverity.1" target="_blank">{{ asset[1] }}</a></td>
+                <td>{{ asset[3] }} </td>
+                <td width="5%">{{ asset[4] }} </td>
+            </tr>
+            {% endfor %}
+
+            </table>
+        </td>
+    </tr>
 </table>
 
 </body>

@@ -4,101 +4,114 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/navi.css') }}">
 
 <body>
-<table class="navi_style_small">
-    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
-    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
-    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
-    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
-    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
-    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+<table align=center width="80%">
+    <tr>
+        <td>
+        <table class="navi_style_small">
+            <td><a href="http:{{url_for('configure_navi')}}">Configure</a></td>
+            <td><a href="http:{{url_for('main')}}">Tag Rules</a></td>
+            <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
+            <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
+            <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
+            <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+        </table>
+
+        </td>
+    </tr>
 </table>
-<br>
-<table align="center" class="navi_style_small">
-    <td bgcolor="{{key_color}}">Step 1: Add Keys</td>
-    <td bgcolor="{{vuln_color}}">Step 2: Update Vulns</td>
-    <td bgcolor="{{asset_color}}">Step 3: Update Assets</td>
-    <td bgcolor="{{sla_color}}">Step 4: Set SLA</td>
-    <td bgcolor="{{fixed_color}}">Step 5: Update Fixed Vulns</td>
-</table>
-<table>
-    <td>
-        <h2>Step 1: Update navi wth T.io API Keys</h2>
-        <form action="/keys" method="post">
-            <h2 style="color: {{key_color}};">{{key_message}}</h2>
-            <label for ="Access_key">Enter your T.io Access Key</label>
-            <input type="text" id="Access_key" name="Access_key" placeholder="T.io Access Key">
-            <br><br>
-            <label for ="Secret_key">Enter your T.io Secret Key</label>
-            <input type="text" id="Secret_key" name="Secret_key" placeholder="T.io Secret Key">
-            <br><br>
-            <input type="submit" value="Update Keys">
-        </form>
-        <br><br>
-        <h2>Step 2: Update the navi Database with Vulnerability Data</h2>
-        <form action="/vulns" method="post">
-            <h2 style="color:{{vuln_color}};">{{vuln_message}}</h2>
-            <label for ="Days">Enter the number of days</label>
-            <input type="number" id="Days" name="Days" placeholder="# of Days" value="30">
-            <br><br>
-            <label for ="Threads">Enter the number of threads</label>
-            <input type="number" id="Threads" name="Threads" placeholder="# of Threads" value="10">
-            <br><br>
-            <label for ="Exid">Enter your existing export ID</label>
-            <input type="text" id="Exid" name="Exid" placeholder="Export ID" value="NONE">
-            <br><br>
-            <input type="submit" id="vulns_update" name="vulns_update" value="Update Vulns">
-        </form>
-        <br><br>
-        <h2>Step 3: Update the navi Database with Asset Data</h2>
-        <form action="/assets" method="post">
-            <h2 style="color:{{asset_color}};">{{asset_message}}</h2>
-            <label for ="asset_days">Enter the number of days</label>
-            <input type="text" id="asset_days" name="asset_days" placeholder="# of Days" value="90">
-            <br><br>
-            <label for ="asset_threads">Enter the number of threads</label>
-            <input type="text" id="asset_threads" name="asset_threads" value="10">
-            <br><br>
-            <label for ="asset_exid">Enter your existing export ID</label>
-            <input type="text" id="asset_exid" name="asset_exid" value="NONE">
-            <br><br>
-            <input type="submit" id="asset_update" name="asset_update" value="Update Asset Data">
-        </form>
-        <br><br>
-        <h2>Step 4: Set your SLA</h2>
-        <form action="/reset_sla" method="post">
-            <h2 style="color:{{sla_color}};">{{sla_message}}</h2>
-            <label for="critical">Critical</label>
-            <input type="number" id="critical" name="critical" value="7">
-            <br><br>
-            <label for="high">High</label>
-            <input type="number" id="high" name="high" value="30">
-            <br><br>
-            <label for="medium">Medium</label>
-            <input type="number" id="medium" name="medium" value="60">
-            <br><br>
-            <label for="low">Low</label>
-            <input type="number" id="low" name="low" value="180">
-            <br><br>
-            <input type="submit" id="sla" name="sla" value="Update SLA">
-        </form>
-        <br><br>
-        <h2>Step 5: Update the Navi Database with Fixed Vulnerability Data for SLA</h2>
-        <form action="/fixed" method="post">
-            <h2 style="color : {{fixed_color}};">{{fixed_message}}</h2>
-            <label for ="fixed_days">Enter the number of days</label>
-            <input type="text" id="fixed_days" name="fixed_days" value="30">
-            <br><br>
-            <label for ="fixed_cat">Enter the Tag Category for your SLA</label>
-            <input type="text" id="fixed_cat" name="fixed_cat" value="(Optional) Tag Category">
-            <br><br>
-            <label for ="fixed_val">Enter the Tag Value for your SLA</label>
-            <input type="text" id="fixed_val" name="fixed_val" value="(Optional) Tag Value">
-            <br><br>
-            <input type="submit" id="fixed_update" name="fixed_update" value="Update Fixed Vulns">
-        </form>
-        <br><br>
-    </td>
-    <td valign="top"><h1>{{title}}</h1><pre style="font-size: 20px">{{data}}</pre></td>
+<table align=center width="70%">
+    <tr>
+        <td>
+            <br>
+            <table align="center" class="navi_style_small">
+                <td bgcolor="{{key_color}}">Step 1: Add Keys</td>
+                <td bgcolor="{{vuln_color}}">Step 2: Update Vulns</td>
+                <td bgcolor="{{asset_color}}">Step 3: Update Assets</td>
+                <td bgcolor="{{sla_color}}">Step 4: Set SLA</td>
+                <td bgcolor="{{fixed_color}}">Step 5: Update Fixed Vulns</td>
+            </table>
+            <table>
+                <td>
+                    <h2>Step 1: Update navi wth T.io API Keys</h2>
+                    <form action="/keys" method="post">
+                        <h2 style="color: {{key_color}};">{{key_message}}</h2>
+                        <label for ="Access_key">Enter your T.io Access Key</label>
+                        <input type="text" id="Access_key" name="Access_key" placeholder="T.io Access Key">
+                        <br><br>
+                        <label for ="Secret_key">Enter your T.io Secret Key</label>
+                        <input type="text" id="Secret_key" name="Secret_key" placeholder="T.io Secret Key">
+                        <br><br>
+                        <input type="submit" value="Update Keys">
+                    </form>
+                    <br><br>
+                    <h2>Step 2: Update the navi Database with Vulnerability Data</h2>
+                    <form action="/vulns" method="post">
+                        <h2 style="color:{{vuln_color}};">{{vuln_message}}</h2>
+                        <label for ="Days">Enter the number of days</label>
+                        <input type="number" id="Days" name="Days" placeholder="# of Days" value="30">
+                        <br><br>
+                        <label for ="Threads">Enter the number of threads</label>
+                        <input type="number" id="Threads" name="Threads" placeholder="# of Threads" value="10">
+                        <br><br>
+                        <label for ="Exid">Enter your existing export ID</label>
+                        <input type="text" id="Exid" name="Exid" placeholder="Export ID" value="NONE">
+                        <br><br>
+                        <input type="submit" id="vulns_update" name="vulns_update" value="Update Vulns">
+                    </form>
+                    <br><br>
+                    <h2>Step 3: Update the navi Database with Asset Data</h2>
+                    <form action="/assets" method="post">
+                        <h2 style="color:{{asset_color}};">{{asset_message}}</h2>
+                        <label for ="asset_days">Enter the number of days</label>
+                        <input type="text" id="asset_days" name="asset_days" placeholder="# of Days" value="90">
+                        <br><br>
+                        <label for ="asset_threads">Enter the number of threads</label>
+                        <input type="text" id="asset_threads" name="asset_threads" value="10">
+                        <br><br>
+                        <label for ="asset_exid">Enter your existing export ID</label>
+                        <input type="text" id="asset_exid" name="asset_exid" value="NONE">
+                        <br><br>
+                        <input type="submit" id="asset_update" name="asset_update" value="Update Asset Data">
+                    </form>
+                    <br><br>
+                    <h2>Step 4: Set your SLA</h2>
+                    <form action="/reset_sla" method="post">
+                        <h2 style="color:{{sla_color}};">{{sla_message}}</h2>
+                        <label for="critical">Critical</label>
+                        <input type="number" id="critical" name="critical" value="7">
+                        <br><br>
+                        <label for="high">High</label>
+                        <input type="number" id="high" name="high" value="30">
+                        <br><br>
+                        <label for="medium">Medium</label>
+                        <input type="number" id="medium" name="medium" value="60">
+                        <br><br>
+                        <label for="low">Low</label>
+                        <input type="number" id="low" name="low" value="180">
+                        <br><br>
+                        <input type="submit" id="sla" name="sla" value="Update SLA">
+                    </form>
+                    <br><br>
+                    <h2>Step 5: Update the Navi Database with Fixed Vulnerability Data for SLA</h2>
+                    <form action="/fixed" method="post">
+                        <h2 style="color : {{fixed_color}};">{{fixed_message}}</h2>
+                        <label for ="fixed_days">Enter the number of days</label>
+                        <input type="text" id="fixed_days" name="fixed_days" value="30">
+                        <br><br>
+                        <label for ="fixed_cat">Enter the Tag Category for your SLA</label>
+                        <input type="text" id="fixed_cat" name="fixed_cat" value="(Optional) Tag Category">
+                        <br><br>
+                        <label for ="fixed_val">Enter the Tag Value for your SLA</label>
+                        <input type="text" id="fixed_val" name="fixed_val" value="(Optional) Tag Value">
+                        <br><br>
+                        <input type="submit" id="fixed_update" name="fixed_update" value="Update Fixed Vulns">
+                    </form>
+                    <br><br>
+                </td>
+                <td valign="top"><h1>{{title}}</h1><pre style="font-size: 20px">{{data}}</pre></td>
+            </table>
+        </td>
+    </tr>
 </table>
 </body>
 </html>

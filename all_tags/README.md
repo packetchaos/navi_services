@@ -26,10 +26,10 @@ Note: The Category : Value pair follow the Tag description.  This is what will b
 The script/service tags assets with the below characteristics:
 
 #### Long Scan Time Awareness
- * Assets that took longer than 60 minutes to scan - Scantime:Over 20 mins
- * Assets that took longer than 60 minutes to scan - Scantime:Over 30 mins
+ * Assets that took longer than 20 minutes to scan - Scantime:Over 20 mins
+ * Assets that took longer than 30 minutes to scan - Scantime:Over 30 mins
  * Assets that took longer than 60 minutes to scan - Scantime:Over 60 mins
- * Assets that took longer than 60 minutes to scan - Scantime:Over 90 mins
+ * Assets that took longer than 90 minutes to scan - Scantime:Over 90 mins
 
 #### Credential Failure Awareness
  * Assets with credential failures using plugin 104410 - Credential issues:Credential Failure

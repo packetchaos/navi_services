@@ -13,10 +13,10 @@ url = "https://cloud.tenable.com"
 tio = TenableIO(access_key, secret_key, vendor='Casey Reid', product='navi', build="Agent Group Tags - 0.0.1")
 
 # Replace 'access_key and secret_key with your keys
-cmd('navi keys --a "{}" --s "{}"'.format(access_key, secret_key))
+cmd('navi config keys --a "{}" --s "{}"'.format(access_key, secret_key))
 
 # Update the navi database for tagging on vulns
-cmd('navi update full')
+cmd('navi config update full')
 
 
 def grab_headers():
@@ -24,13 +24,13 @@ def grab_headers():
 
 
 # Grab all of the ports found open in the navi db
-open_ports = subprocess.check_output('navi find query "select distinct port from vulns;"', shell=True)
+open_ports = subprocess.check_output('navi explore data query "select distinct port from vulns;"', shell=True)
 list_of_ports = open_ports.decode('utf-8')
 
 # Tag by port
 for port in eval(list_of_ports):
     if port[0] != '0':
-        cmd('navi tag --c "Open Port" --v "Port: {}" --port {}'.format(port[0], port[0]))
+        cmd('navi enrich tag --c "Open Port" --v "Port: {}" --port {}'.format(port[0], port[0]))
 
 finish = time.time()
 

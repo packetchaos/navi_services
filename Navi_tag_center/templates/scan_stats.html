@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>SLA by Tag</title>
@@ -7,72 +7,86 @@
 
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/navi.css') }}">
 
-<body>
-<table class="navi_style_small">
-    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
-    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
-    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
-    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
-    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
-    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
-</table>
-<br><br>
-<h1 align="Center">Average Scan time Per Policy</h1>
-<table class="navi_style_main">
-    <tr>
-        <th><u>Name</u></th>
-        <th><u>Average Mins Per Asset</u></th>
-        <th><u>Total Assets</u></th>
-    </tr>
-    {% for key, values in policy_average.items()%}
-    <tr>
-        <td width="70%">{{ key }}</td>
-        <td width="15%">{{ values[0] }} mins</td>
-        <td width="15%">{{ values[1] }} Assets Scanned</td>
+<body style="background-image:url('images/Lovepik_com-400233632-technical-line-background.jpg');">
 
 
-    </tr>
-    {% endfor %}
-
-</table>
-<br><br>
-<h1 align="Center">Average Scan Time Per Scanner</h1>
-<table align="center" class="navi_style_main">
-    <tr>
-        <th><u>Name</u></th>
-        <th><u>Average Per Asset</u></th>
-        <th><u>Total Assets</u></th>
-    </tr>
-    {% for key, values in scanner_average.items()%}
-    <tr>
-        <td width="70%">{{ key }}</td>
-        <td width="15%">{{ values[0] }} Mins</td>
-        <td width="15">{{ values[1] }} Assets Scanned</td>
-
-
-    </tr>
-    {% endfor %}
-
-</table>
-<br><br>
-<h1 align="Center">Average Scan time - Per Scan</h1>
-<table class="navi_style_main">
-    <tr>
-        <th><u>Name</u></th>
-        <th><u>Average Per Asset</u></th>
-        <th><u>Total Assets</u></th>
-    </tr>
-    {% for key, values in scan_name_average.items()%}
-    <tr>
-        <td width="70%">{{ key }}</td>
-        <td width="15%">{{ values[0] }} Mins</td>
-        <td width="15%">{{ values[1] }} Assets Scanned</td>
-
-
-    </tr>
-    {% endfor %}
-
+<table align=center width="80%">
+    <tr><td>
+        <table class="navi_style_small">
+            <td><a href="http:{{url_for('configure_navi')}}">Configure</a></td>
+            <td><a href="http:{{url_for('main')}}">Tag Rules</a></td>
+            <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
+            <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
+            <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
+            <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+        </table>
+    </td></tr>
 </table>
 
+<table align=center width="70%" border="0" bgcolor="121212">
+    <tr><td>
+        <table align=center width="80%" border="0">
+            <tr><td>
+                <br><br>
+                <h2 align="Center">Average Scan Duration in Minutes - Per Policy</h2>
+                <table align=center class="navi_style_main">
+                    <tr>
+                        <th><u>Policy Name</u></th>
+                        <th><u>Average</u></th>
+                        <th><u>Total</u></th>
+                    </tr>
+                    {% for key, values in policy_average.items()%}
+                    <tr>
+                        <td width="80%">{{ key }}</td>
+                        <td width="10%">{{ values[0] }}</td>
+                        <td width="10%">{{ values[1] }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                <br><br>
+                <h2 align="center">Average Scan Duration in Minutes - Per Scanner</h2>
+                <table align=center class="navi_style_main">
+                    <tr>
+                        <th><u>Scanner IP</u></th>
+                        <th><u>Average</u></th>
+                        <th><u>Total</u></th>
+                    </tr>
+                    {% for key, values in scanner_average.items()%}
+                    <tr>
+                        <td width="80%">{{ key }}</td>
+                        <td width="10%">{{ values[0] }}</td>
+                        <td width="10%">{{ values[1] }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                <br><br>
+                <h2 align="center">Average Scan Duration - Per Scan</h2>
+                <table align="center" class="navi_style_main">
+                    <tr>
+                        <th><u>Scan Name</u></th>
+                        <th><u>Average</u></th>
+                        <th><u>Total</u></th>
+                    </tr>
+                    {% for key, values in scan_name_average.items()%}
+                    <tr>
+                        <td width="80%">{{ key }}</td>
+                        <td width="10%">{{ values[0] }}</td>
+                        <td width="10%">{{ values[1] }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </td></tr>
+        </table>
+    </td></tr>
+</table>
 </body>
 </html>

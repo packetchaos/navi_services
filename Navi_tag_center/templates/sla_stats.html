@@ -8,61 +8,74 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/navi.css') }}">
 
 <body>
-<table class="navi_style_small">
-    <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
-    <td><a href="http:{{url_for('main')}}">Tag Center</a></td>
-    <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
-    <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
-    <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
-    <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
-</table>
-
-<br>
-<h1 align="center">Your Current SLA</h1>
-<table class="navi_style_main">
+<table align=center width="80%">
     <tr>
-        <th><u>Critical</u></th>
-        <th><u>High</u></th>
-        <th><u>Medium</u></th>
-        <th><u>low</u></th>
-    </tr>
-
-    <tr>
-        <td>{{ sla_data[0] }} Days</td>
-        <td>{{ sla_data[1] }} Days</td>
-        <td>{{ sla_data[2] }} Days</td>
-        <td>{{ sla_data[3] }} Days</td>
-    </tr>
-
-
-</table>
-<br>
-<h1 align="Center">SLA Stats</h1>
-<table class="navi_style_main">
-    <tr>
-        <th><u>Severity</u></th>
-        <th><u>Total Vulns</u></th>
-        <th><u>Total Fixed</u></th>
-        <th><u>Fixed Rate</u></th>
-    </tr>
-    {% for key, values in totals_dict.items()%}
-    <tr>
-
-        <td>{{ key }}</td>
-        <td>{{ values["Total vulns"] }}</td>
-        <td>{{ values["Fixed Total"] }}</td>
-        <td>{{ values["success rate"] }}</td>
-
-
-    </tr>
-    {% endfor %}
-    <tr>
-        <td>Total</td>
-        <td>{{ total  }}</td>
-        <td>{{ sevrity_pass_total }}</td>
-        <td>{{ success_rate }}</td>
+        <td>
+            <table class="navi_style_small">
+                <td><a href="http:{{url_for('configure_navi')}}">Configiure</a></td>
+                <td><a href="http:{{url_for('main')}}">Tag Rules</a></td>
+                <td><a href="http:{{url_for('get_scan_stats')}}">Asset Stats</a></td>
+                <td><a href="http:{{url_for('get_sla')}}">SLA Stats</a></td>
+                <td><a href="http:{{url_for('navi_search', search_method='plugin_id', search_text=104410)}}">Credential Failures</a></td>
+                <td><a href="http:{{url_for('navi_search')}}">Plugin Search</a></td>
+            </table>
+        </td>
     </tr>
 </table>
+
+<table align=center width="60%">
+    <tr>
+        <td>
+            <br>
+            <h1 align="center">Your Current SLA</h1>
+            <table class="navi_style_main">
+                <tr>
+                    <th><u>Critical</u></th>
+                    <th><u>High</u></th>
+                    <th><u>Medium</u></th>
+                    <th><u>low</u></th>
+                </tr>
+
+                <tr>
+                    <td>{{ sla_data[0] }} Days</td>
+                    <td>{{ sla_data[1] }} Days</td>
+                    <td>{{ sla_data[2] }} Days</td>
+                    <td>{{ sla_data[3] }} Days</td>
+                </tr>
+
+
+            </table>
+            <br>
+            <h1 align="Center">SLA Stats</h1>
+            <table class="navi_style_main">
+                <tr>
+                    <th><u>Severity</u></th>
+                    <th><u>Total Vulns</u></th>
+                    <th><u>Total Fixed</u></th>
+                    <th><u>Fixed Rate</u></th>
+                </tr>
+                {% for key, values in totals_dict.items()%}
+                <tr>
+
+                    <td>{{ key }}</td>
+                    <td>{{ values["Total vulns"] }}</td>
+                    <td>{{ values["Fixed Total"] }}</td>
+                    <td>{{ values["success rate"] }}</td>
+
+
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>Total</td>
+                    <td>{{ total  }}</td>
+                    <td>{{ sevrity_pass_total }}</td>
+                    <td>{{ success_rate }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
 
 </body>
 </html>
